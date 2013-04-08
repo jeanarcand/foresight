@@ -1,0 +1,12 @@
+<svg id="dep-graph" width="900" height="500" />
+
+<script>
+
+AJS.$(document).ready(function() {
+
+	show_graph();
+
+});
+
+
+</script>
