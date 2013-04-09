@@ -30,19 +30,6 @@ public final class GraphBuilder {
 		
 		addAdjacentNodesToGraph(graph, issueObject.getId(), considerInwardDep, considerOutwardDep);
 		
-//		issueManager.
-		
-//		issueLinkManager.getOutwardLinks(0);
-		
-//		graph.getNodes().add(new Node("GT-123", "1"));
-//		graph.getNodes().add(new Node("GT-456", "2"));
-//		graph.getNodes().add(new Node("GT-789", "3"));
-		
-//		graph.getLinks().add(new Link(0, 1, "resolved"));
-//		graph.getLinks().add(new Link("GT-123", "GT-789", "resolved"));
-//		graph.getLinks().add(new Link("GT-456", "GT-789", "resolved"));
-//		graph.getLinks().add(new Link("GT-789", "GT-123", "resolved"));
-		
 		return graph;
 	}
 
@@ -54,7 +41,8 @@ public final class GraphBuilder {
 			existingNodes.add(issueId);
 			graph.addNode(newNode);
 		}
-		
+
+		// FIXME : accept as param
 		if (considerOutwardDep) {
 			for (IssueLink currentOutwardLink : issueLinkManager.getOutwardLinks(issueId)) {
 				
@@ -72,6 +60,7 @@ public final class GraphBuilder {
 			}
 		}
 		
+		// FIXME : accept as param
 		if (considerInwardDep) {
 			for (IssueLink currentInwardLink : issueLinkManager.getInwardLinks(issueId)) {
 
