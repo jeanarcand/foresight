@@ -1,8 +1,13 @@
 	
 function show_graph() {
 
-	  var issue_key=AJS.$("input[name=id]").val();
-	  AJS.$.get("/plugins/servlet/issue-dependency-viewer-servlet?currentIssueKey="+issue_key,
+	  var issue_id=AJS.$("input[name=id]").val();
+	  var includeInwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeInward]").is(':checked');
+	  var includeOutwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").is(':checked');
+	  AJS.$.get(contextPath + "/plugins/servlet/issue-dependency-viewer-servlet" 
+			  + "?currentIssueId="+issue_id
+			  + "&includeOutward="+includeOutwardLinks
+			  + "&includeInward="+includeInwardLinks,
 		function(data) {
 			     
 			var svg = d3.select("#dep-graph");
@@ -48,7 +53,7 @@ function show_graph() {
 			    .data(force.nodes())
 			    .enter().append("svg:circle")
 			    .attr("class", function(d) {
-			    	if (issue_key == d.key) {
+			    	if (issue_id == d.key) {
 			    		return "circle-current";
 			    	}
 			    	else {
@@ -95,3 +100,12 @@ function show_graph() {
 			}
 	  });
 }
+
+AJS.$(document).ready(function() {
+	AJS.$("#issue-dependency-viewer-form input[name=includeInward]").change(function(){
+		show_graph();
+	});
+	AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").change(function(){
+		show_graph();
+	});
+});

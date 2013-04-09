@@ -1,5 +1,10 @@
 package ca.appbox.jira.plugins.issuedependencyviewer.graph;
 
+/**
+ * Link between 2 nodes (issue dependency).
+ * 
+ * @author Jean Arcand
+ */
 public final class Link {
 
 	private final Long source;

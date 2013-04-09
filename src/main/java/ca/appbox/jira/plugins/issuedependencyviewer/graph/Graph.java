@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Dependency graph.
+ * 
+ * @author Jean Arcand
+ */
 public final class Graph {
 
 	private List<Node> nodes = new ArrayList<Node>();

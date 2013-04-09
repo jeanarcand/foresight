@@ -1,5 +1,11 @@
 package ca.appbox.jira.plugins.issuedependencyviewer.graph;
 
+/**
+ * Node of the graph (jira issue).
+ * 
+ * @author Jean Arcand
+ *
+ */
 public final class Node {
 
 	private final Long id;

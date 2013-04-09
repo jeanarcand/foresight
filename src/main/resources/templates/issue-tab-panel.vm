@@ -1,3 +1,8 @@
+<form id="issue-dependency-viewer-form">
+Include dependencies : 
+<input type="checkbox" name="includeOutward" value="includeOutward"> Outward
+<input type="checkbox" name="includeInward" value="includeInward"> Inward
+</form>
 <svg id="dep-graph" width="900" height="500" />
 
 <script>

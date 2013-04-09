@@ -8,10 +8,17 @@ import com.atlassian.jira.issue.MutableIssue;
 import com.atlassian.jira.issue.link.IssueLink;
 import com.atlassian.jira.issue.link.IssueLinkManager;
 
+/**
+ * Builder of the dependency graph.
+ * 
+ * @author Jean Arcand
+ */
 public final class GraphBuilder {
 
 	private IssueManager issueManager;
 	private IssueLinkManager issueLinkManager;
+	private boolean includeInwardLinks = true;
+	private boolean includeOutwardLinks = true;
 
 	private List<Long> existingNodes = new ArrayList<Long>();
 	
@@ -28,12 +35,12 @@ public final class GraphBuilder {
 
 		MutableIssue issueObject = issueManager.getIssueObject(currentIssueId);
 		
-		addAdjacentNodesToGraph(graph, issueObject.getId(), considerInwardDep, considerOutwardDep);
+		addAdjacentNodesToGraph(graph, issueObject.getId());
 		
 		return graph;
 	}
 
-	private void addAdjacentNodesToGraph(Graph graph, Long issueId, boolean considerInwardDep, boolean considerOutwardDep) {
+	private void addAdjacentNodesToGraph(Graph graph, Long issueId) {
 
 		if (!existingNodes.contains(issueId)) {
 			MutableIssue issueObject = issueManager.getIssueObject(issueId);
@@ -42,13 +49,12 @@ public final class GraphBuilder {
 			graph.addNode(newNode);
 		}
 
-		// FIXME : accept as param
-		if (considerOutwardDep) {
+		if (this.includeOutwardLinks) {
 			for (IssueLink currentOutwardLink : issueLinkManager.getOutwardLinks(issueId)) {
 				
 				if (!currentOutwardLink.isSystemLink()) {
 					if (!existingNodes.contains(currentOutwardLink.getDestinationId())) {
-						addAdjacentNodesToGraph(graph, currentOutwardLink.getDestinationId(), considerInwardDep, considerOutwardDep);
+						addAdjacentNodesToGraph(graph, currentOutwardLink.getDestinationId());
 					}
 					
 					Link potentialNewLink = new Link(currentOutwardLink.getSourceId(),currentOutwardLink.getDestinationId(),"resolved");
@@ -60,13 +66,12 @@ public final class GraphBuilder {
 			}
 		}
 		
-		// FIXME : accept as param
-		if (considerInwardDep) {
+		if (this.includeInwardLinks) {
 			for (IssueLink currentInwardLink : issueLinkManager.getInwardLinks(issueId)) {
 
 				if (!currentInwardLink .isSystemLink()) {
 					if (!existingNodes.contains(currentInwardLink.getSourceId())) {
-						addAdjacentNodesToGraph(graph, currentInwardLink.getSourceId(), considerInwardDep, considerOutwardDep);
+						addAdjacentNodesToGraph(graph, currentInwardLink.getSourceId());
 					}
 					
 					Link potentialNewLink = new Link(currentInwardLink.getDestinationId(),currentInwardLink.getSourceId(),"resolved");
@@ -77,5 +82,15 @@ public final class GraphBuilder {
 				}
 			}
 		}
+	}
+	
+	public GraphBuilder setIncludeInwardLinks(boolean includeInwardLinks) {
+		this.includeInwardLinks = includeInwardLinks;
+		return this;
+	}
+	
+	public GraphBuilder setIncludeOutwardLinks(boolean includeOutwardLinks) {
+		this.includeOutwardLinks = includeOutwardLinks;
+		return this;
 	}
 }
