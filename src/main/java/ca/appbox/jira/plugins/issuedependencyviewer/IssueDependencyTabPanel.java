@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.atlassian.crowd.embedded.api.User;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.plugin.issuetabpanel.AbstractIssueTabPanel;
 import com.atlassian.jira.plugin.issuetabpanel.IssueAction;
 import com.atlassian.jira.plugin.issuetabpanel.IssueTabPanelModuleDescriptor;
-import com.atlassian.plugin.webresource.WebResourceManager;
-import com.opensymphony.user.User;
 
 /**
  * Manages the issue tab panel for viewing dependencies between issues.
@@ -20,20 +19,20 @@ public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
 
 	private static final String ISSUE_TAB_PANEL_VELOCITY_TEMPLATE = "issue-tab-panel";
 
-	private final WebResourceManager webResourceManager;
+//	private final WebResourceManager webResourceManager;
 	
 	private IssueTabPanelModuleDescriptor issueTabPanelModuleDescriptor;
 	
-	public IssueDependencyTabPanel(WebResourceManager webResourceManager) {
+	public IssueDependencyTabPanel() {
 		super();
-		this.webResourceManager = webResourceManager;
+//		this.webResourceManager = webResourceManager;
 	}
 
 	@Override
 	public List<IssueAction> getActions(Issue currentIssue, User currentUser) {
 		
 		// forces the download of all the resources when tab is selected.
-		webResourceManager.requireResource("ca.appbox.jira.issue-dependency-viewer:issue-dependency-viewer-resources");
+//		webResourceManager.requireResource("ca.appbox.jira.issue-dependency-viewer:issue-dependency-viewer-resources");
 		
 		final List<IssueAction> actions = new ArrayList<IssueAction>();
 		actions.add(new IssueAction() {

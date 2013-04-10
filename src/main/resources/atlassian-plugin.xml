@@ -16,6 +16,7 @@
 		<resource type="download" name="d3.v3.min.js" location="/js/d3.v3.min.js" />
 		<resource type="download" name="issue-dependency-viewer.js" location="/js/issue-dependency-viewer.js" />
 		<resource type="download" name="images/" location="/images" />
+		<context>atl.general</context>
 	</web-resource>
 
 	<servlet name="issue-dependency-viewer-servlet" key="issue-dependency-viewer-servlet"
