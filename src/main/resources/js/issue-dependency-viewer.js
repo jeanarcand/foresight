@@ -9,18 +9,26 @@ function show_graph() {
 			  + "&includeOutward="+includeOutwardLinks
 			  + "&includeInward="+includeInwardLinks,
 		function(data) {
-			     
-			var svg = d3.select("#dep-graph");
+			
+		  	// clean up old svg object
+		    d3.select("#issue-dependency-viewer-graph").remove();
+		    var container = d3.select('#issue-dependency-viewer-graph-container');
+		   
+		    var svg = container.append('svg:svg')
+		        .attr("id", "issue-dependency-viewer-graph");
+		  
 			var graph = JSON.parse(data);
 			
 			var links = graph.links;
 			var nodes = graph.nodes;
-
+			
+			// link the actual nodes
 			links.forEach(function(link) {
 				  link.source = nodes[link.source];
 				  link.target = nodes[link.target];
 			});
 			
+			// create the layout
 			var force = d3.layout.force()
 			    .nodes(nodes)
 			    .links(links)
@@ -31,7 +39,7 @@ function show_graph() {
 			    .start();
 
 			svg.append("svg:defs").selectAll("marker")
-			    .data(["suit", "licensing", "resolved"])
+			    .data(["resolved"])
 			  .enter().append("svg:marker")
 			    .attr("id", String)
 			    .attr("viewBox", "0 -5 10 10")
@@ -46,7 +54,7 @@ function show_graph() {
 			var path = svg.append("svg:g").selectAll("path")
 			    .data(force.links())
 			  .enter().append("svg:path")
-			    .attr("class", function(d) { return "link " + d.type; })
+			    .attr("class", function(d) { return "link normal" })
 			    .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
 
 			var circle = svg.append("svg:g").selectAll("circle")
@@ -60,7 +68,7 @@ function show_graph() {
 			    		return "circle";
 			    	}
 			    	})
-			    .attr("r", 6)
+			    .attr("r", 7)
 			    .call(force.drag);
 
 			var link = svg.append("svg:g").selectAll("g")
@@ -71,6 +79,7 @@ function show_graph() {
 			    .data(force.nodes())
 			  .enter().append("svg:g");
 			
+			// show the task key
 			text.append("svg:text")
 			    .attr("x", 8)
 			    .attr("y", ".31em")
@@ -82,6 +91,7 @@ function show_graph() {
 			    .attr("y", ".31em")
 			    .text(function(d) { return d.name; });
 
+			// curve the arcs between the nodes to correctly show cycles.
 			function tick() {
 			  path.attr("d", function(d) {
 			    var dx = d.target.x - d.source.x,
@@ -101,6 +111,7 @@ function show_graph() {
 	  });
 }
 
+// on change functions of the show inward/outward checkboxes
 AJS.$(document).ready(function() {
 	AJS.$("#issue-dependency-viewer-form input[name=includeInward]").change(function(){
 		show_graph();

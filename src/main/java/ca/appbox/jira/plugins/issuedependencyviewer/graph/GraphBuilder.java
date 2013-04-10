@@ -48,7 +48,7 @@ public final class GraphBuilder {
 			existingNodes.add(issueId);
 			graph.addNode(newNode);
 		}
-
+		
 		if (this.includeOutwardLinks) {
 			for (IssueLink currentOutwardLink : issueLinkManager.getOutwardLinks(issueId)) {
 				
@@ -74,7 +74,7 @@ public final class GraphBuilder {
 						addAdjacentNodesToGraph(graph, currentInwardLink.getSourceId());
 					}
 					
-					Link potentialNewLink = new Link(currentInwardLink.getDestinationId(),currentInwardLink.getSourceId(),"resolved");
+					Link potentialNewLink = new Link(currentInwardLink.getSourceId(),currentInwardLink.getDestinationId(),"resolved");
 					
 					if (!graph.containsLink(potentialNewLink)) {
 						graph.addLink(potentialNewLink);
