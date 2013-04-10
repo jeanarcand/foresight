@@ -26,8 +26,7 @@
 	<issue-tabpanel key="issue-dependency-viewer-panel"
 		name="Issue dependency viewer panel"
 		class="ca.appbox.jira.plugins.issuedependencyviewer.IssueDependencyTabPanel">
-		<description>Issue dependency viewer tab panel</description>
-		<label>Dependencies</label>
+		<label key="ca.appbox.jira.plugins.issuedependencyviewer.issue_tab_title" />
 		<resource type="velocity" name="issue-tab-panel" location="/templates/issue-tab-panel.vm" />
 	</issue-tabpanel>
 </atlassian-plugin>
