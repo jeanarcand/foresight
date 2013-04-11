@@ -55,6 +55,10 @@ public class JsonUtils {
 				.append(nodes.indexOf(new Node(links.get(i).getTarget(), null, null)))
 				.append(",\"type\":\"")
 				.append(links.get(i).getValue())
+				.append("\",\"outward\":\"")
+				.append(links.get(i).getOutward())
+				.append("\",\"inward\":\"")
+				.append(links.get(i).getInward())
 				.append("\"}");
 			
 			if (i != links.size() - 1) {
