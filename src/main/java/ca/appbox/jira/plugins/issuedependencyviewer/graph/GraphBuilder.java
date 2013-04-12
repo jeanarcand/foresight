@@ -57,11 +57,7 @@ public final class GraphBuilder {
 						addAdjacentNodesToGraph(graph, currentOutwardLink.getDestinationId());
 					}
 					
-					Link potentialNewLink = new Link(currentOutwardLink.getSourceId(),currentOutwardLink.getDestinationId(),"resolved");
-					
-					if (!graph.containsLink(potentialNewLink)) {
-						graph.addLink(potentialNewLink);
-					}
+					addLink(graph, currentOutwardLink);
 				}
 			}
 		}
@@ -74,13 +70,21 @@ public final class GraphBuilder {
 						addAdjacentNodesToGraph(graph, currentInwardLink.getSourceId());
 					}
 					
-					Link potentialNewLink = new Link(currentInwardLink.getSourceId(),currentInwardLink.getDestinationId(),"resolved");
-					
-					if (!graph.containsLink(potentialNewLink)) {
-						graph.addLink(potentialNewLink);
-					}
+					addLink(graph, currentInwardLink);
 				}
 			}
+		}
+	}
+
+	private void addLink(Graph graph, IssueLink currentInwardLink) {
+		Link potentialNewLink = new Link(currentInwardLink.getSourceId(),
+				currentInwardLink.getDestinationId(),
+				"resolved", 
+				currentInwardLink.getIssueLinkType().getOutward(),
+				currentInwardLink.getIssueLinkType().getInward());
+		
+		if (!graph.containsLink(potentialNewLink)) {
+			graph.addLink(potentialNewLink);
 		}
 	}
 	

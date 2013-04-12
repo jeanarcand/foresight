@@ -71,6 +71,14 @@ function show_graph() {
 			    .attr("r", 7)
 			    .call(force.drag);
 
+			var labels = svg.selectAll('text')
+			    .data(graph.links)
+			  .enter().append('text')
+			    .attr("x", function(d) { return (d.source.y + d.target.y) / 2; }) 
+			    .attr("y", function(d) { return (d.source.x + d.target.x) / 2; }) 
+			    .attr("text-anchor", "middle") 
+			    .text(function(d) {return d.outward;});
+				
 			var link = svg.append("svg:g").selectAll("g")
 			    .data(force.nodes())
 			    .enter().append("svg:g");
@@ -107,6 +115,9 @@ function show_graph() {
 			  text.attr("transform", function(d) {
 			    return "translate(" + d.x + "," + d.y + ")";
 			  });
+			  
+			  labels.attr("x", function(d) { return (d.source.x + d.target.x) / 2; }) 
+		        .attr("y", function(d) { return (d.source.y + d.target.y) / 2; }) 
 			}
 	  });
 }
