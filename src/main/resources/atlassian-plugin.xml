@@ -1,0 +1,32 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}"
+	name="${project.name}" plugins-version="2">
+	<plugin-info>
+		<description>${project.description}</description>
+		<version>${project.version}</version>
+		<vendor name="${project.organization.name}" url="${project.organization.url}" />
+	</plugin-info>
+
+	<resource type="i18n" name="i18n" location="issue-dependency-viewer" />
+
+	<web-resource key="issue-dependency-viewer-resources"
+		name="issue-dependency-viewer resources">
+		<dependency>com.atlassian.auiplugin:ajs</dependency>
+		<dependency>jira.webresources:jira-global</dependency>
+		<resource type="download" name="issue-dependency-viewer.css" location="/css/issue-dependency-viewer.css" />
+		<resource type="download" name="d3.v3.min.js" location="/js/d3.v3.min.js" />
+		<resource type="download" name="issue-dependency-viewer.js" location="/js/issue-dependency-viewer.js" />
+		<resource type="download" name="images/" location="/images" />
+	</web-resource>
+
+	<servlet name="issue-dependency-viewer-servlet" key="issue-dependency-viewer-servlet"
+		class="ca.appbox.jira.plugins.issuedependencyviewer.IssueDependencyServlet">
+		<url-pattern>/issue-dependency-viewer-servlet</url-pattern>
+	</servlet>
+
+	<issue-tabpanel key="issue-dependency-viewer-panel"
+		name="Issue dependency viewer panel"
+		class="ca.appbox.jira.plugins.issuedependencyviewer.IssueDependencyTabPanel">
+		<label key="ca.appbox.jira.plugins.issuedependencyviewer.issue_tab_title" />
+		<resource type="velocity" name="issue-tab-panel" location="/templates/issue-tab-panel.vm" />
+	</issue-tabpanel>
+</atlassian-plugin>

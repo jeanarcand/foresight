@@ -1,0 +1,20 @@
+<form id="issue-dependency-viewer-form">
+$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.include_dependencies")
+<input type="checkbox" id="includeOutward" name="includeOutward" value="includeOutward">
+<label for="includeOutward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.outward")</label>
+<input type="checkbox" id="includeInward" name="includeInward" value="includeInward">
+<label for="includeInward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.inward")</label>
+</form>
+
+<div id="issue-dependency-viewer-graph-container"></div>
+
+<script>
+
+AJS.$(document).ready(function() {
+
+	show_graph();
+
+});
+
+
+</script>
