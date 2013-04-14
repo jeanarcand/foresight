@@ -28,9 +28,12 @@ public class ForesightSettings {
 		List<IssueType> allIssueTypes = new ArrayList<IssueType>(constantsManager.getAllIssueTypeObjects());
 		
 		for (IssueType currentIssueType : allIssueTypes) {
-			colorCodesByIssueTypes.put(currentIssueType.getId(), "#DF0101");
+			String currentIssueTypeName = currentIssueType.getName();
+			colorCodesByIssueTypes.put(currentIssueTypeName, 
+					JiraDefaultIssueTypes.fromJiraName(currentIssueTypeName).getColorCode());
 		}
 		
 		return colorCodesByIssueTypes;
 	}
 }
+
