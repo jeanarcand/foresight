@@ -14,13 +14,6 @@ path.link.normal {
 }
 
 .circle {
-  fill: #ccc;
-  stroke: #333;
-  stroke-width: 1.5px;
-}
-
-.circle-current {
-  fill: #4552E6;
   stroke: #333;
   stroke-width: 1.5px;
 }

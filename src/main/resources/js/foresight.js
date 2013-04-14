@@ -1,5 +1,13 @@
 var pluginSettings;
 
+function update_plugin_settings() {
+
+	  AJS.$.get(contextPath + "/plugins/servlet/foresight-settings",
+		function(data) {
+		  pluginSettings = JSON.parse(data);
+	  });
+}
+
 function update_description_types() {
 	var descriptionType = AJS.$('#dependencyDescriptionTypes').val();
 	d3.selectAll(".dependency-link")
@@ -21,6 +29,9 @@ function update_description_types() {
 }
 
 function show_graph() {
+	
+	  update_plugin_settings();
+	  
 	  var issue_id=AJS.$("input[name=id]").val();
 	  var includeInwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeInward]").is(':checked');
 	  var includeOutwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").is(':checked');
@@ -80,12 +91,13 @@ function show_graph() {
 			var circle = svg.append("svg:g").selectAll("circle")
 			    .data(force.nodes())
 			    .enter().append("svg:circle")
-			    .attr("class", function(d) {
-			    	if (issue_id == d.key) {
-			    		return "circle-current";
+			    .attr("class", "circle")
+			    .attr("fill", function(data) {
+			    	if (issue_id == data.key) {
+			    		return "#4552E6";
 			    	}
 			    	else {
-			    		return "circle";
+			    		return pluginSettings.nodecolors[data.type];
 			    	}
 			    	})
 			    .attr("r", 7)
