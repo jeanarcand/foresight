@@ -20,7 +20,7 @@ public final class GraphBuilder {
 	private boolean includeInwardLinks = true;
 	private boolean includeOutwardLinks = true;
 
-	private List<Long> existingNodes = new ArrayList<Long>();
+	private List<Long> knownIssueIds = new ArrayList<Long>();
 	
 	public GraphBuilder(IssueManager issueManager,
 			IssueLinkManager issueLinkManager) {
@@ -41,11 +41,11 @@ public final class GraphBuilder {
 	}
 
 	private void addAdjacentNodesToGraph(Graph graph, Long issueId) {
-
-		if (!existingNodes.contains(issueId)) {
+		
+		if (!knownIssueIds.contains(issueId)) {
 			MutableIssue issueObject = issueManager.getIssueObject(issueId);
-			Node newNode = new Node(issueId, issueObject.getKey(),"1");
-			existingNodes.add(issueId);
+			Node newNode = new Node(issueObject);
+			knownIssueIds.add(issueId);
 			graph.addNode(newNode);
 		}
 		
@@ -53,7 +53,7 @@ public final class GraphBuilder {
 			for (IssueLink currentOutwardLink : issueLinkManager.getOutwardLinks(issueId)) {
 				
 				if (!currentOutwardLink.isSystemLink()) {
-					if (!existingNodes.contains(currentOutwardLink.getDestinationId())) {
+					if (!knownIssueIds.contains(currentOutwardLink.getDestinationId())) {
 						addAdjacentNodesToGraph(graph, currentOutwardLink.getDestinationId());
 					}
 					
@@ -66,7 +66,7 @@ public final class GraphBuilder {
 			for (IssueLink currentInwardLink : issueLinkManager.getInwardLinks(issueId)) {
 
 				if (!currentInwardLink .isSystemLink()) {
-					if (!existingNodes.contains(currentInwardLink.getSourceId())) {
+					if (!knownIssueIds.contains(currentInwardLink.getSourceId())) {
 						addAdjacentNodesToGraph(graph, currentInwardLink.getSourceId());
 					}
 					
@@ -77,11 +77,7 @@ public final class GraphBuilder {
 	}
 
 	private void addLink(Graph graph, IssueLink currentInwardLink) {
-		Link potentialNewLink = new Link(currentInwardLink.getSourceId(),
-				currentInwardLink.getDestinationId(),
-				"resolved", 
-				currentInwardLink.getIssueLinkType().getOutward(),
-				currentInwardLink.getIssueLinkType().getInward());
+		Link potentialNewLink = new Link(currentInwardLink);
 		
 		if (!graph.containsLink(potentialNewLink)) {
 			graph.addLink(potentialNewLink);
