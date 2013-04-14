@@ -1,4 +1,4 @@
-package ca.appbox.jira.plugins.issuedependencyviewer;
+package ca.appbox.jira.plugins.issuedependencyviewer.issuetabpanels;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +18,7 @@ import com.opensymphony.user.User;
  */
 public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
 
-	private static final String ISSUE_TAB_PANEL_VELOCITY_TEMPLATE = "issue-tab-panel";
+	private static final String ISSUE_TAB_PANEL_VELOCITY_TEMPLATE = "dependency-graph-panel.vm";
 
 	private final WebResourceManager webResourceManager;
 	
@@ -33,7 +33,7 @@ public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
 	public List<IssueAction> getActions(Issue currentIssue, User currentUser) {
 		
 		// forces the download of all the resources when tab is selected.
-		webResourceManager.requireResource("ca.appbox.jira.issue-dependency-viewer:issue-dependency-viewer-resources");
+		webResourceManager.requireResource("ca.appbox.jira.issue-dependency-viewer:foresight-resources");
 		
 		final List<IssueAction> actions = new ArrayList<IssueAction>();
 		actions.add(new IssueAction() {

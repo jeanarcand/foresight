@@ -29,7 +29,7 @@ public final class GraphBuilder {
 		this.issueLinkManager = issueLinkManager;
 	}
 
-	public Graph buildGraph(Long currentIssueId, boolean considerInwardDep, boolean considerOutwardDep) {
+	public Graph buildGraph(Long currentIssueId) {
 		
 		final Graph graph = new Graph();
 

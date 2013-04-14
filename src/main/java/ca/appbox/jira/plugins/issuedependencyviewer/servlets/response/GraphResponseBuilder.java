@@ -1,4 +1,4 @@
-package ca.appbox.jira.plugins.issuedependencyviewer;
+package ca.appbox.jira.plugins.issuedependencyviewer.servlets.response;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +42,9 @@ public class GraphResponseBuilder {
 				.append(nodes.get(i).getName())
 				.append("\",\"group\":\"")
 				.append(nodes.get(i).getGroup())
+				.append("\",")
+				.append("\"type\":\"")
+				.append(nodes.get(i).getType())
 				.append("\"}");
 			
 			if (i != nodes.size() - 1) {
@@ -56,9 +59,9 @@ public class GraphResponseBuilder {
 		for (int i=0;i<links.size();i++) {
 			
 			json.append("{\"source\":")
-				.append(nodes.indexOf(nodeIndex.get(links.get(i).getSource())))
+				.append(nodeIndex.get(links.get(i).getSource()))
 				.append(",\"target\":")
-				.append(nodes.indexOf(nodeIndex.get(links.get(i).getTarget())))
+				.append(nodeIndex.get(links.get(i).getTarget()))
 				.append(",\"type\":\"")
 				.append("resolved")
 				.append("\",\"outward\":\"")

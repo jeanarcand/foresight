@@ -29,6 +29,10 @@ public final class Node {
 	public Long getId() {
 		return this.correspondingIssue.getId();
 	}
+	
+	public String getType() {
+		return this.correspondingIssue.getIssueTypeObject().getName();
+	}
 
 	@Override
 	public int hashCode() {
