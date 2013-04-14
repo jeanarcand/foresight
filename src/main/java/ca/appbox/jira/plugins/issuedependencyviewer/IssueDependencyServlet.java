@@ -47,7 +47,7 @@ public final class IssueDependencyServlet extends HttpServlet {
 
 		// FIXME : further validations needed.
 		if (currentIssueKeyParameter != null) {
-			resp.getWriter().write(JsonUtils.toJson(
+			resp.getWriter().write(new GraphResponseBuilder().toJson(
 					new GraphBuilder(issueManager,issueLinkManager)
 						.setIncludeInwardLinks(considerInward)
 						.setIncludeOutwardLinks(considerOutward)

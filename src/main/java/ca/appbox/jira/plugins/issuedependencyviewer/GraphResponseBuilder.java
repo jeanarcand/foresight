@@ -1,17 +1,19 @@
 package ca.appbox.jira.plugins.issuedependencyviewer;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Graph;
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Link;
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Node;
 
 /**
- * Json related utilities.
+ * Builds the json representation of a graph.
  * 
  * @author Jean Arcand
  */
-public class JsonUtils {
+public class GraphResponseBuilder {
 
 	/**
 	 * Poor man's implementation of Gson.
@@ -20,16 +22,20 @@ public class JsonUtils {
 	 * 
 	 * @return Json string representation of the graph.
 	 */
-	public static String toJson(Graph graph) {
+	public String toJson(Graph graph) {
 	
 		StringBuilder json = new StringBuilder();
 		
 		json.append("{")
 			.append("  \"nodes\":[");
 		
+		// key = issue id, value = position in array.
+		Map<Long, Integer> nodeIndex = new HashMap<Long, Integer>();
 		List<Node> nodes = graph.getNodes();
 		for (int i=0;i<nodes.size();i++) {
 
+			nodeIndex.put(nodes.get(i).getId(), Integer.valueOf(i));
+			
 			json.append("{\"key\":")
 				.append(nodes.get(i).getId())
 			    .append(",\"name\":\"")
@@ -50,11 +56,11 @@ public class JsonUtils {
 		for (int i=0;i<links.size();i++) {
 			
 			json.append("{\"source\":")
-				.append(nodes.indexOf(new Node(links.get(i).getSource(),null, null)))
+				.append(nodes.indexOf(nodeIndex.get(links.get(i).getSource())))
 				.append(",\"target\":")
-				.append(nodes.indexOf(new Node(links.get(i).getTarget(), null, null)))
+				.append(nodes.indexOf(nodeIndex.get(links.get(i).getTarget())))
 				.append(",\"type\":\"")
-				.append(links.get(i).getValue())
+				.append("resolved")
 				.append("\",\"outward\":\"")
 				.append(links.get(i).getOutward())
 				.append("\",\"inward\":\"")
