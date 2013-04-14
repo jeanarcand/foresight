@@ -8,8 +8,8 @@
 
 	<resource type="i18n" name="i18n" location="issue-dependency-viewer" />
 
-	<web-resource key="issue-dependency-viewer-resources"
-		name="issue-dependency-viewer resources">
+	<web-resource name="Foresight Resources"
+		key="issue-dependency-viewer-resources">
 		<dependency>com.atlassian.auiplugin:ajs</dependency>
 		<dependency>jira.webresources:jira-global</dependency>
 		<resource type="download" name="issue-dependency-viewer.css" location="/css/issue-dependency-viewer.css" />
@@ -19,13 +19,14 @@
 		<context>atl.general</context>
 	</web-resource>
 
-	<servlet name="issue-dependency-viewer-servlet" key="issue-dependency-viewer-servlet"
+	<servlet name="Foresight Servlet" 
+		key="issue-dependency-viewer-servlet"
 		class="ca.appbox.jira.plugins.issuedependencyviewer.IssueDependencyServlet">
 		<url-pattern>/issue-dependency-viewer-servlet</url-pattern>
 	</servlet>
 
-	<issue-tabpanel key="issue-dependency-viewer-panel"
-		name="Issue dependency viewer panel"
+	<issue-tabpanel name="Foresight Dependency Viewer Tab"
+		key="issue-dependency-viewer-panel"
 		class="ca.appbox.jira.plugins.issuedependencyviewer.IssueDependencyTabPanel">
 		<label key="ca.appbox.jira.plugins.issuedependencyviewer.issue_tab_title" />
 		<resource type="velocity" name="issue-tab-panel" location="/templates/issue-tab-panel.vm" />

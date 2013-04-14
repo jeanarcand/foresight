@@ -7,14 +7,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ca.appbox.jira</groupId>
     <artifactId>issue-dependency-viewer</artifactId>
-    <version>0.5.1</version>
+    <version>0.6.1-jira5</version>
 
     <organization>
         <name>Solutions Appbox inc.</name>
         <url>http://www.appbox.ca/</url>
     </organization>
 
-    <name>issue-dependency-viewer</name>
+    <name>Foresight</name>
     <description>Issue dependency visualization plugin for Atlassian JIRA.</description>
     <packaging>atlassian-plugin</packaging>
 
