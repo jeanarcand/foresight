@@ -1,13 +1,9 @@
 package ca.appbox.jira.plugins.issuedependencyviewer.servlets.response;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import ca.appbox.jira.plugins.issuedependencyviewer.settings.ForesightSettings;
-
-import com.atlassian.jira.issue.issuetype.IssueType;
 
 /**
  * Builds the json representation of the add-on's configurations.
@@ -26,15 +22,14 @@ public class SettingsResponseBuilder {
 		StringBuilder json = new StringBuilder();
 		
 		json.append("{")
-			.append("  \"configurations\":{")
-			.append("    \"node-colors\":{");
+			.append("  \"nodecolors\":{");
 		
-		Set<Entry<String, String>> colorCodesEntries = 
-				pluginSettings.getColorCodesByIssueTypes().entrySet();
+		Iterator<Entry<String, String>> colorCodesEntriesIter = 
+				pluginSettings.getColorCodesByIssueTypes().entrySet().iterator();
 		
-		while (colorCodesEntries.iterator().hasNext()) {
+		while (colorCodesEntriesIter.hasNext()) {
 			
-			Entry<String, String> currentColorCodeSetting = (Entry<String, String>) colorCodesEntries.iterator().next();
+			Entry<String, String> currentColorCodeSetting = (Entry<String, String>) colorCodesEntriesIter.next();
 			String issueType = currentColorCodeSetting.getKey();
 			String colorCode = currentColorCodeSetting.getValue();
 			
@@ -42,13 +37,12 @@ public class SettingsResponseBuilder {
 				.append(issueType)
 				.append("\": \"").append(colorCode).append("\"");
 			
-			if (!colorCodesEntries.iterator().hasNext()) {
+			if (colorCodesEntriesIter.hasNext()) {
 				json.append(",");
 			}
 		}
 		
-		json.append("    }")
-			.append("  }")
+		json.append("  }")
 			.append("}");
 		
 		return json.toString();
