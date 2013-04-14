@@ -1,4 +1,23 @@
-	
+function update_description_types() {
+	var descriptionType = AJS.$('#dependencyDescriptionTypes').val();
+	d3.selectAll(".dependency-link")
+		.text(function(data) {
+			var linkLabel;
+			switch(descriptionType) {
+			case 'none':
+				linkLabel = "";
+				break;
+			case 'inward':
+				linkLabel = data.inward;
+				break;
+			case 'outward':
+				linkLabel = data.outward;
+				break;	  
+			}
+			return linkLabel;
+		});
+}
+
 function show_graph() {
 
 	  var issue_id=AJS.$("input[name=id]").val();
@@ -76,8 +95,9 @@ function show_graph() {
 			  .enter().append('text')
 			    .attr("x", function(d) { return (d.source.y + d.target.y) / 2; }) 
 			    .attr("y", function(d) { return (d.source.x + d.target.x) / 2; }) 
-			    .attr("text-anchor", "middle") 
-			    .text(function(d) {return d.outward;});
+			    .attr("text-anchor", "middle")
+			    .attr("class", "dependency-link");
+//			    .text(function(d) {return d.outward;});
 				
 			var link = svg.append("svg:g").selectAll("g")
 			    .data(force.nodes())
@@ -99,6 +119,8 @@ function show_graph() {
 			    .attr("y", ".31em")
 			    .text(function(d) { return d.name; });
 
+			update_description_types();
+			
 			// curve the arcs between the nodes to correctly show cycles.
 			function tick() {
 			  path.attr("d", function(d) {
@@ -129,5 +151,8 @@ AJS.$(document).ready(function() {
 	});
 	AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").change(function(){
 		show_graph();
+	});
+	AJS.$("#dependencyDescriptionTypes").change(function(){
+		update_description_types();
 	});
 });
