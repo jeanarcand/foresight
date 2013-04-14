@@ -9,26 +9,32 @@
 	<resource type="i18n" name="i18n" location="issue-dependency-viewer" />
 
 	<web-resource name="Foresight Resources"
-		key="issue-dependency-viewer-resources">
+		key="foresight-resources">
 		<dependency>com.atlassian.auiplugin:ajs</dependency>
 		<dependency>jira.webresources:jira-global</dependency>
-		<resource type="download" name="issue-dependency-viewer.css" location="/css/issue-dependency-viewer.css" />
+		<resource type="download" name="foresight.css" location="/css/foresight.css" />
 		<resource type="download" name="d3.v3.min.js" location="/js/d3.v3.min.js" />
-		<resource type="download" name="issue-dependency-viewer.js" location="/js/issue-dependency-viewer.js" />
+		<resource type="download" name="foresight.js" location="/js/foresight.js" />
 		<resource type="download" name="images/" location="/images" />
 		<context>atl.general</context>
 	</web-resource>
 
-	<servlet name="Foresight Servlet" 
-		key="issue-dependency-viewer-servlet"
-		class="ca.appbox.jira.plugins.issuedependencyviewer.IssueDependencyServlet">
-		<url-pattern>/issue-dependency-viewer-servlet</url-pattern>
+	<servlet name="Foresight Dependency Graph Servlet" 
+		key="foresight-graph-servlet"
+		class="ca.appbox.jira.plugins.issuedependencyviewer.servlets.DependencyGraphServlet">
+		<url-pattern>/foresight-dependency-graph</url-pattern>
+	</servlet>
+	
+	<servlet name="Foresight Settings Servlet" 
+		key="foresigh-settings-servlet"
+		class="ca.appbox.jira.plugins.issuedependencyviewer.servlets.ForesightSettingsServlet">
+		<url-pattern>/foresight-settings</url-pattern>
 	</servlet>
 
 	<issue-tabpanel name="Foresight Dependency Viewer Tab"
-		key="issue-dependency-viewer-panel"
-		class="ca.appbox.jira.plugins.issuedependencyviewer.IssueDependencyTabPanel">
+		key="foresight-dependency-graph-issue-panel"
+		class="ca.appbox.jira.plugins.issuedependencyviewer.issuetabpanels.IssueDependencyTabPanel">
 		<label key="ca.appbox.jira.plugins.issuedependencyviewer.issue_tab_title" />
-		<resource type="velocity" name="issue-tab-panel" location="/templates/issue-tab-panel.vm" />
+		<resource type="velocity" name="dependency-graph-panel.vm" location="/templates/dependency-graph-panel.vm" />
 	</issue-tabpanel>
 </atlassian-plugin>

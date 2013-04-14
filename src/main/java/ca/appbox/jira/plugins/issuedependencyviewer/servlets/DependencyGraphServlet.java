@@ -1,4 +1,4 @@
-package ca.appbox.jira.plugins.issuedependencyviewer;
+package ca.appbox.jira.plugins.issuedependencyviewer.servlets;
 
 import java.io.IOException;
 import java.util.Map;
@@ -9,16 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.GraphBuilder;
+import ca.appbox.jira.plugins.issuedependencyviewer.servlets.response.GraphResponseBuilder;
 
 import com.atlassian.jira.issue.IssueManager;
 import com.atlassian.jira.issue.link.IssueLinkManager;
 
 /**
- * Servlet for all actions of the plugin.
+ * Servlet for everything related to the dependency graph.
  * 
  * @author Jean Arcand
  */
-public final class IssueDependencyServlet extends HttpServlet {
+public final class DependencyGraphServlet extends HttpServlet {
 
 	private static final String INCLUDE_OUTWARD_PARAM_KEY = "includeOutward";
 	private static final String CURRENT_ISSUE_ID_PARAM_KEY = "currentIssueId";
@@ -29,7 +30,7 @@ public final class IssueDependencyServlet extends HttpServlet {
 	private IssueManager issueManager;
 	private IssueLinkManager issueLinkManager;
 	
-	public IssueDependencyServlet(IssueManager issueManager, 
+	public DependencyGraphServlet(IssueManager issueManager, 
 			IssueLinkManager issueLinkManager) {
 		super();
 		this.issueManager = issueManager;
@@ -47,14 +48,21 @@ public final class IssueDependencyServlet extends HttpServlet {
 
 		// FIXME : further validations needed.
 		if (currentIssueKeyParameter != null) {
-			resp.getWriter().write(new GraphResponseBuilder().toJson(
-					new GraphBuilder(issueManager,issueLinkManager)
-						.setIncludeInwardLinks(considerInward)
-						.setIncludeOutwardLinks(considerOutward)
-						.buildGraph(Long.valueOf(currentIssueKeyParameter),considerInward, considerOutward)));
+
+			// build the graph
+			GraphBuilder graphBuilder = new GraphBuilder(issueManager,issueLinkManager)
+				.setIncludeInwardLinks(considerInward)
+				.setIncludeOutwardLinks(considerOutward);
+			
+			// output the response
+			String graphResponse = new GraphResponseBuilder().toJson(
+					graphBuilder.buildGraph(Long.valueOf(currentIssueKeyParameter)));
+			
+			resp.getWriter().write(graphResponse.toString());
 		}
 	}
 
+	//FIXME : move to parser/static util
 	@SuppressWarnings("rawtypes")
 	private boolean parseBooleanParam(String parameter, Map parameterMap) {
 		
@@ -72,6 +80,7 @@ public final class IssueDependencyServlet extends HttpServlet {
 		return booleanValue;
 	}
 
+	//FIXME : move to parser/static util	
 	@SuppressWarnings("rawtypes")
 	private Long parseLongParam(String parameter, Map parameterMap) {
 

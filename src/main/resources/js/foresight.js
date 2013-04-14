@@ -1,3 +1,5 @@
+var pluginSettings;
+
 function update_description_types() {
 	var descriptionType = AJS.$('#dependencyDescriptionTypes').val();
 	d3.selectAll(".dependency-link")
@@ -19,11 +21,10 @@ function update_description_types() {
 }
 
 function show_graph() {
-
 	  var issue_id=AJS.$("input[name=id]").val();
 	  var includeInwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeInward]").is(':checked');
 	  var includeOutwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").is(':checked');
-	  AJS.$.get(contextPath + "/plugins/servlet/issue-dependency-viewer-servlet" 
+	  AJS.$.get(contextPath + "/plugins/servlet/foresight-dependency-graph" 
 			  + "?currentIssueId="+issue_id
 			  + "&includeOutward="+includeOutwardLinks
 			  + "&includeInward="+includeInwardLinks,
@@ -97,7 +98,6 @@ function show_graph() {
 			    .attr("y", function(d) { return (d.source.x + d.target.x) / 2; }) 
 			    .attr("text-anchor", "middle")
 			    .attr("class", "dependency-link");
-//			    .text(function(d) {return d.outward;});
 				
 			var link = svg.append("svg:g").selectAll("g")
 			    .data(force.nodes())
@@ -144,14 +144,17 @@ function show_graph() {
 	  });
 }
 
-// on change functions of the show inward/outward checkboxes
 AJS.$(document).ready(function() {
+	
+	// on change functions of the show inward/outward checkboxes
 	AJS.$("#issue-dependency-viewer-form input[name=includeInward]").change(function(){
 		show_graph();
 	});
 	AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").change(function(){
 		show_graph();
 	});
+	
+	// on change function for the description types drop-down.
 	AJS.$("#dependencyDescriptionTypes").change(function(){
 		update_description_types();
 	});

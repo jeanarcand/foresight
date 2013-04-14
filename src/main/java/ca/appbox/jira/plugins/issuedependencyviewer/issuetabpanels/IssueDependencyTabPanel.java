@@ -1,4 +1,4 @@
-package ca.appbox.jira.plugins.issuedependencyviewer;
+package ca.appbox.jira.plugins.issuedependencyviewer.issuetabpanels;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +17,7 @@ import com.atlassian.jira.plugin.issuetabpanel.IssueTabPanelModuleDescriptor;
  */
 public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
 
-	private static final String ISSUE_TAB_PANEL_VELOCITY_TEMPLATE = "issue-tab-panel";
+	private static final String ISSUE_TAB_PANEL_VELOCITY_TEMPLATE = "dependency-graph-panel.vm";
 
 	private IssueTabPanelModuleDescriptor issueTabPanelModuleDescriptor;
 	
