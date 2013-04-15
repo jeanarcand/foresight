@@ -46,7 +46,9 @@ function show_graph() {
 		    var container = d3.select('#issue-dependency-viewer-graph-container');
 		   
 		    var svg = container.append('svg:svg')
-		        .attr("id", "issue-dependency-viewer-graph");
+		        .attr("id", "issue-dependency-viewer-graph")
+		        .attr("width", 900)
+		        .attr("height", 500);
 		  
 			var graph = JSON.parse(data);
 			
