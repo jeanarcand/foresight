@@ -15,7 +15,7 @@
     </organization>
 
     <name>Foresight</name>
-    <description>Issue dependency visualization plugin for Atlassian JIRA.</description>
+    <description>Issue dependency visualization add-on for Atlassian JIRA.</description>
     <packaging>atlassian-plugin</packaging>
 
     <dependencies>

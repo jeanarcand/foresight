@@ -6,7 +6,7 @@
 		<vendor name="${project.organization.name}" url="${project.organization.url}" />
 	</plugin-info>
 
-	<resource type="i18n" name="i18n" location="issue-dependency-viewer" />
+	<resource type="i18n" name="i18n" location="foresight" />
 
 	<web-resource name="Foresight Resources"
 		key="foresight-resources">
