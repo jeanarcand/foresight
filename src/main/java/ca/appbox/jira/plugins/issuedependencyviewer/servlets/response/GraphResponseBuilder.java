@@ -42,6 +42,8 @@ public class GraphResponseBuilder {
 				.append(nodes.get(i).getName())
 				.append("\",\"group\":\"")
 				.append(nodes.get(i).getGroup())
+				.append("\",\"summary\":\"")
+				.append(nodes.get(i).getSummary())
 				.append("\",")
 				.append("\"type\":\"")
 				.append(nodes.get(i).getType())

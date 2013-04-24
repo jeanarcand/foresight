@@ -1,12 +1,12 @@
 <div id="foresight">
 	<form id="issue-dependency-viewer-form">
-		$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.include_dependencies")
+		<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.include_dependencies")</label>
 		<input type="checkbox" id="includeOutward" name="includeOutward" value="includeOutward">
 		<label for="includeOutward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.outward")</label>
 		<input type="checkbox" id="includeInward" name="includeInward" value="includeInward">
 		<label for="includeInward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.inward")</label>
 		<br/>
-		$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions")
+		<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions")</label>
 		<select id="dependencyDescriptionTypes" name="dependencyDescriptionTypes">
 		  <option value="none">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions.none")</option>
 		  <option value="inward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions.inward")</option>

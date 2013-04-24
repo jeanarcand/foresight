@@ -24,3 +24,8 @@
   stroke-width: 3px;
   stroke-opacity: .8;
 }
+
+.foresight-form-label {
+  width: 200px;
+  float: left;
+}
