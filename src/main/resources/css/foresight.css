@@ -9,10 +9,6 @@
   stroke-width: 1.5px; 
 }
 
-#foresight path.link.resolved {
-  stroke-dasharray: 0,2 1;
-}
-
 #foresight circle {
   stroke: #333;
   stroke-width: 1.5px;
