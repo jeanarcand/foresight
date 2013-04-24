@@ -107,10 +107,13 @@ function show_graph() {
 		    .attr("d", "M0,-5L10,0L0,5");
 
 		var path = svg.append("svg:g").selectAll("path")
-		    .data(force.links())
-		  .enter().append("svg:path")
-		    .attr("class", function(d) { return "link normal" })
-		    .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
+	    	.data(force.links())
+	      .enter().append("svg:path")
+	        .attr("class", function(d) { return "link normal" })
+	        .attr("fill", "none")
+	        .attr("stroke", "#666")
+	        .attr("stroke-width", "1.5px")
+	        .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
 
 		var circle = svg.append("svg:g").selectAll("circle")
 		    .data(force.nodes())
