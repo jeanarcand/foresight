@@ -8,7 +8,7 @@ function update_plugin_settings() {
 
 function update_description_types() {
 	var descriptionType = AJS.$('#dependencyDescriptionTypes').val();
-	d3.selectAll(".dependency-link").text(function(data) {
+	d3.selectAll(".foresight-text").text(function(data) {
 		var linkLabel;
 		switch (descriptionType) {
 		case 'none':
@@ -107,18 +107,16 @@ function show_graph() {
 		    .attr("d", "M0,-5L10,0L0,5");
 
 		var path = svg.append("svg:g").selectAll("path")
-		    .data(force.links())
-		  .enter().append("svg:path")
-		    .attr("class", function(d) { return "link normal" })
-		    .attr("fill", "none")
-		    .attr("stroke", "#666")
-		    .attr("stroke-width", "1.5px")
-		    .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
+	    	.data(force.links())
+	      .enter().append("svg:path")
+	        .attr("class", function(d) { return "link normal" })
+	        .attr("class", "foresight-path-link")
+	        .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
 
 		var circle = svg.append("svg:g").selectAll("circle")
 		    .data(force.nodes())
 		    .enter().append("svg:circle")
-		    .attr("class", "circle")
+		    .attr("class", "foresight-circle")
 		    .attr("fill", function(data) {
 		    	if (issue_id == data.key) {
 		    		return "#4552E6";
@@ -136,7 +134,7 @@ function show_graph() {
 		    .attr("x", function(d) { return (d.source.y + d.target.y) / 2; }) 
 		    .attr("y", function(d) { return (d.source.x + d.target.x) / 2; }) 
 		    .attr("text-anchor", "middle")
-		    .attr("class", "dependency-link");
+		    .attr("class", "foresight-text");
 			
 		var link = svg.append("svg:g").selectAll("g")
 		    .data(force.nodes())
@@ -150,7 +148,7 @@ function show_graph() {
 		text.append("svg:text")
 		    .attr("x", 8)
 		    .attr("y", ".31em")
-		    .attr("class", "shadow")
+		    .attr("class", "foresight-shadow")
 		    .text(function(d) { return d.name; });
 		
 		text.append("svg:text")
