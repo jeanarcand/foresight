@@ -1,29 +1,25 @@
-#foresight issue-dependency-viewer-graph-container" {
+#foresight issue-dependency-viewer-graph-container {
   height:500px;
   width:900px;
 }
 
-#foresight path.link {
+.foresight-path-link {
   fill: none;
   stroke: #666;
   stroke-width: 1.5px; 
 }
 
-#foresight path.link.resolved {
-  stroke-dasharray: 0,2 1;
-}
-
-#foresight circle {
+.foresight-circle {
   stroke: #333;
   stroke-width: 1.5px;
 }
 
-#foresight text {
+.foresight-text {
   font: 10px sans-serif;
   pointer-events: none;
 }
 
-#foresight shadow {
+.foresight-shadow {
   stroke: #fff;
   stroke-width: 3px;
   stroke-opacity: .8;
