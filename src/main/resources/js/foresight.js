@@ -44,7 +44,7 @@ function show_graph() {
 		  
 		var svg = container.append('svg:svg')
 			.attr("id", "issue-dependency-viewer-graph")
-			.attr("width", 900)
+			.attr("width", 1000)
 			.attr("height", 500);
 		  
 		var graph = JSON.parse(data);
