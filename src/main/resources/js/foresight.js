@@ -154,8 +154,10 @@ function show_graph() {
 		text.append("svg:text")
 		    .attr("x", 8)
 		    .attr("y", ".31em")
-		    .text(function(d) { return d.name; });
-
+		    .text(function(d) { return d.name; })
+			.append("svg:title")
+			.text(function(d) { return d.summary; });
+		
 		update_description_types();
 		
 		// curve the arcs between the nodes to correctly show cycles.

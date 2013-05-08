@@ -34,6 +34,10 @@ public final class Node {
 		return this.correspondingIssue.getIssueTypeObject().getName();
 	}
 
+	public String getSummary() {
+		return this.correspondingIssue.getSummary();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
