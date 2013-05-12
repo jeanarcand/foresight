@@ -19,7 +19,8 @@ public final class GraphBuilder {
 	private IssueLinkManager issueLinkManager;
 	private boolean includeInwardLinks = true;
 	private boolean includeOutwardLinks = true;
-
+	private boolean includeSystemLinks = true;
+	
 	private List<Long> knownIssueIds = new ArrayList<Long>();
 	
 	public GraphBuilder(IssueManager issueManager,
@@ -52,7 +53,7 @@ public final class GraphBuilder {
 		if (this.includeOutwardLinks) {
 			for (IssueLink currentOutwardLink : issueLinkManager.getOutwardLinks(issueId)) {
 				
-				if (!currentOutwardLink.isSystemLink()) {
+				if (includeLink(currentOutwardLink)) {
 					if (!knownIssueIds.contains(currentOutwardLink.getDestinationId())) {
 						addAdjacentNodesToGraph(graph, currentOutwardLink.getDestinationId());
 					}
@@ -65,7 +66,7 @@ public final class GraphBuilder {
 		if (this.includeInwardLinks) {
 			for (IssueLink currentInwardLink : issueLinkManager.getInwardLinks(issueId)) {
 
-				if (!currentInwardLink .isSystemLink()) {
+				if (includeLink(currentInwardLink)) {
 					if (!knownIssueIds.contains(currentInwardLink.getSourceId())) {
 						addAdjacentNodesToGraph(graph, currentInwardLink.getSourceId());
 					}
@@ -83,6 +84,13 @@ public final class GraphBuilder {
 			graph.addLink(potentialNewLink);
 		}
 	}
+
+	private boolean includeLink(IssueLink currentOutwardLink) {
+		boolean includeLink = this.includeSystemLinks
+				|| (!this.includeSystemLinks && !currentOutwardLink.isSystemLink());
+		
+		return includeLink;
+	}
 	
 	public GraphBuilder setIncludeInwardLinks(boolean includeInwardLinks) {
 		this.includeInwardLinks = includeInwardLinks;
@@ -93,4 +101,9 @@ public final class GraphBuilder {
 		this.includeOutwardLinks = includeOutwardLinks;
 		return this;
 	}
+	
+	public GraphBuilder setIncludeSystemLinks(boolean includeSystemLinks) {
+		this.includeSystemLinks = includeSystemLinks;
+		return this;
+	}	
 }

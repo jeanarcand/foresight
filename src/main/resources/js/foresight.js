@@ -32,11 +32,13 @@ function show_graph() {
 	var issue_id=AJS.$("input[name=id]").val();
 	var includeInwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeInward]").is(':checked');
 	var includeOutwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").is(':checked');
-
+	var includeSystemLinks=AJS.$("#issue-dependency-viewer-form input[name=includeSystemLinks]").is(':checked');
+	
 	AJS.$.get(contextPath + "/plugins/servlet/foresight-dependency-graph" 
 			+ "?currentIssueId="+issue_id
 			+ "&includeOutward="+includeOutwardLinks
-			+ "&includeInward="+includeInwardLinks, function(data) {
+			+ "&includeInward="+includeInwardLinks
+			+ "&includeSystemLinks="+includeSystemLinks,function(data) {
 		
 		// clean up old svg object
 		d3.select("#issue-dependency-viewer-graph").remove();
@@ -63,10 +65,10 @@ function show_graph() {
 		    .nodes(nodes)
 		    .links(links)
 		    .size([900, 500])
-		    .linkDistance(120)
+		    .linkDistance(140)
 		    .charge(-150)
 		    .gravity(.05)
-		    .distance(100)
+		    .distance(130)
 		    .on("tick", tick)
 		    .start();
 
@@ -110,7 +112,13 @@ function show_graph() {
 	    	.data(force.links())
 	      .enter().append("svg:path")
 	        .attr("class", function(d) { return "link normal" })
-	        .attr("class", "foresight-path-link")
+	        .attr("class", function(d) {
+	        	if (d.systemLink) {
+	        		return "foresight-path-link-system";
+	        	} else {
+	        		return "foresight-path-link";
+	        	}
+	        })
 	        .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
 
 		var circle = svg.append("svg:g").selectAll("circle")
@@ -155,9 +163,9 @@ function show_graph() {
 		    .attr("x", 8)
 		    .attr("y", ".31em")
 		    .text(function(d) { return d.name; })
-		    .append("svg:title")
+			.append("svg:title")
 			.text(function(d) { return d.summary; });
-
+		
 		update_description_types();
 		
 		// curve the arcs between the nodes to correctly show cycles.
@@ -190,6 +198,9 @@ AJS.$(document).ready(function() {
 		show_graph();
 	});
 	AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").change(function(){
+		show_graph();
+	});
+	AJS.$("#issue-dependency-viewer-form input[name=includeSystemLinks]").change(function(){
 		show_graph();
 	});
 	

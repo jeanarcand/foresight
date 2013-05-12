@@ -70,7 +70,9 @@ public class GraphResponseBuilder {
 				.append(links.get(i).getOutward())
 				.append("\",\"inward\":\"")
 				.append(links.get(i).getInward())
-				.append("\"}");
+				.append("\",\"systemLink\":")
+				.append(links.get(i).isSystemLink())
+				.append("}");
 			
 			if (i != links.size() - 1) {
 				json.append(",");
