@@ -6,6 +6,9 @@
 		<input type="checkbox" id="includeInward" name="includeInward" value="includeInward">
 		<label for="includeInward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.inward")</label>
 		<br/>
+		<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.include.system.links")</label>
+		<input type="checkbox" id="includeSystemLinks" name="includeSystemLinks" value="includeSystemLinks">
+		<br/>
 		<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions")</label>
 		<select id="dependencyDescriptionTypes" name="dependencyDescriptionTypes">
 		  <option value="none">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions.none")</option>

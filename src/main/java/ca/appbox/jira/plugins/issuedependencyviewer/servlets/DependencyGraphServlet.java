@@ -24,6 +24,7 @@ public final class DependencyGraphServlet extends HttpServlet {
 	private static final String INCLUDE_OUTWARD_PARAM_KEY = "includeOutward";
 	private static final String CURRENT_ISSUE_ID_PARAM_KEY = "currentIssueId";
 	private static final String INCLUDE_INWARD_PARAM_KEY = "includeInward";
+	private static final String INCLUDE_SYSTEM_LINKS = "includeSystemLinks";
 
 	private static final long serialVersionUID = -5512021564484143035L;
 
@@ -45,7 +46,9 @@ public final class DependencyGraphServlet extends HttpServlet {
 		
 		boolean considerInward = parseBooleanParam(INCLUDE_INWARD_PARAM_KEY, req.getParameterMap());
 		boolean considerOutward = parseBooleanParam(INCLUDE_OUTWARD_PARAM_KEY, req.getParameterMap());
+		boolean includeSystemLinks = parseBooleanParam(INCLUDE_SYSTEM_LINKS, req.getParameterMap());
 
+		
 		// FIXME : further validations needed.
 		if (currentIssueKeyParameter != null) {
 

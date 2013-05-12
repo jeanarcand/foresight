@@ -31,6 +31,10 @@ public final class Link {
 	public String getInward() {
 		return this.correspondingLink.getIssueLinkType().getInward();
 	}
+	
+	public boolean isSystemLink() {
+		return this.correspondingLink.isSystemLink();
+	}
 
 	@Override
 	public int hashCode() {

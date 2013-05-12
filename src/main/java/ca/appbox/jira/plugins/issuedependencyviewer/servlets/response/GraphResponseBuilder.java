@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringEscapeUtils;
-
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Graph;
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Link;
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Node;
@@ -72,7 +70,9 @@ public class GraphResponseBuilder {
 				.append(links.get(i).getOutward())
 				.append("\",\"inward\":\"")
 				.append(links.get(i).getInward())
-				.append("\"}");
+				.append("\",\"systemLink\":")
+				.append(links.get(i).isSystemLink())
+				.append("}");
 			
 			if (i != links.size() - 1) {
 				json.append(",");
