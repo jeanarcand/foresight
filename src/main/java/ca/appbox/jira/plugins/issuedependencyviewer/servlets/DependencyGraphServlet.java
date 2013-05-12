@@ -55,7 +55,8 @@ public final class DependencyGraphServlet extends HttpServlet {
 			// build the graph
 			GraphBuilder graphBuilder = new GraphBuilder(issueManager,issueLinkManager)
 				.setIncludeInwardLinks(considerInward)
-				.setIncludeOutwardLinks(considerOutward);
+				.setIncludeOutwardLinks(considerOutward)
+				.setIncludeSystemLinks(includeSystemLinks);
 			
 			// output the response
 			String graphResponse = new GraphResponseBuilder().toJson(

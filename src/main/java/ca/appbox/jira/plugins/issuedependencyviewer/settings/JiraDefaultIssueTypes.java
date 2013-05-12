@@ -7,9 +7,8 @@ package ca.appbox.jira.plugins.issuedependencyviewer.settings;
  */
 public enum JiraDefaultIssueTypes {
 
-	NEW_FEATURE("New Feature", "#3ADF00"), TASK("Task", "#F7FE2E"), IMPROVEMENT(
-			"Improvement", "#0040FF"), BUG("Bug", "#FF0000"), UNKNOWN(
-			"Unknown", "#CCCCCC");
+	NEW_FEATURE("New Feature", "#3ADF00"), TASK("Task", "#F7FE2E"), SUB_TASK("Sub-task", "#F7FE2E")
+		,IMPROVEMENT("Improvement", "#0040FF"), BUG("Bug", "#FF0000"), UNKNOWN("Unknown", "#CCCCCC");
 
 	private String defaultJiraName;
 	private String colorCode;

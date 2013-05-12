@@ -25,11 +25,23 @@ public final class Link {
 	}
 
 	public String getOutward() {
-		return this.correspondingLink.getIssueLinkType().getOutward();
+		String outward = "";
+		
+		if (!this.correspondingLink.isSystemLink()) {
+			outward = this.correspondingLink.getIssueLinkType().getOutward();
+		}
+		
+		return outward;
 	}
 
 	public String getInward() {
-		return this.correspondingLink.getIssueLinkType().getInward();
+		String inward = "";
+		
+		if (!this.correspondingLink.isSystemLink()) {
+			inward = this.correspondingLink.getIssueLinkType().getInward();
+		}
+		
+		return inward;
 	}
 	
 	public boolean isSystemLink() {

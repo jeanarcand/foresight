@@ -101,4 +101,9 @@ public final class GraphBuilder {
 		this.includeOutwardLinks = includeOutwardLinks;
 		return this;
 	}
+	
+	public GraphBuilder setIncludeSystemLinks(boolean includeSystemLinks) {
+		this.includeSystemLinks = includeSystemLinks;
+		return this;
+	}	
 }

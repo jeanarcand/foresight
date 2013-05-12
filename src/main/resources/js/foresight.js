@@ -37,7 +37,7 @@ function show_graph() {
 	AJS.$.get(contextPath + "/plugins/servlet/foresight-dependency-graph" 
 			+ "?currentIssueId="+issue_id
 			+ "&includeOutward="+includeOutwardLinks
-			+ "&includeInward="+includeInwardLinks, 
+			+ "&includeInward="+includeInwardLinks 
 			+ "&includeSystemLinks="+includeSystemLinks,function(data) {
 		
 		// clean up old svg object
