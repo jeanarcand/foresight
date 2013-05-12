@@ -3,6 +3,11 @@ package ca.appbox.jira.plugins.issuedependencyviewer.graph;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.atlassian.jira.issue.IssueManager;
+import com.atlassian.jira.issue.MutableIssue;
+import com.atlassian.jira.issue.link.IssueLink;
+import com.atlassian.jira.issue.link.IssueLinkManager;
+
 /**
  * Builder of the dependency graph.
  * 
