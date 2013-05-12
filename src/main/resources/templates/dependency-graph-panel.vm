@@ -1,20 +1,24 @@
 <div id="foresight">
 	<form id="issue-dependency-viewer-form">
-		<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.include_dependencies")</label>
-		<input type="checkbox" id="includeOutward" name="includeOutward" value="includeOutward">
-		<label for="includeOutward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.outward")</label>
-		<input type="checkbox" id="includeInward" name="includeInward" value="includeInward">
-		<label for="includeInward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.inward")</label>
-		<br/>
-		<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.include.system.links")</label>
-		<input type="checkbox" id="includeSystemLinks" name="includeSystemLinks" value="includeSystemLinks">
-		<br/>
-		<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions")</label>
-		<select id="dependencyDescriptionTypes" name="dependencyDescriptionTypes">
-		  <option value="none">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions.none")</option>
-		  <option value="inward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions.inward")</option>
-		  <option value="outward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions.outward")</option>
-		</select>	
+		<div>
+			<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.include_dependencies")</label>
+			<input type="checkbox" id="includeOutward" class="foresight-input" name="includeOutward" value="includeOutward">
+			<label for="includeOutward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.outward")</label>
+			<input type="checkbox" id="includeInward" class="foresight-input" name="includeInward" value="includeInward">
+			<label for="includeInward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.inward")</label>
+		</div>
+		<div>
+			<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.include.system.links")</label>
+			<input type="checkbox" id="includeSystemLinks" class="foresight-input" name="includeSystemLinks" value="includeSystemLinks">
+		</div>
+		<div>
+			<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions")</label>
+			<select id="dependencyDescriptionTypes" class="foresight-input" name="dependencyDescriptionTypes">
+			  <option value="none">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions.none")</option>
+			  <option value="inward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions.inward")</option>
+			  <option value="outward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions.outward")</option>
+			</select>	
+		</div>
 	</form>
 	<div id="issue-dependency-viewer-graph-container"></div>
 </div>

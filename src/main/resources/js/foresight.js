@@ -156,13 +156,8 @@ function show_graph() {
 		text.append("svg:text")
 		    .attr("x", 8)
 		    .attr("y", ".31em")
-		    .attr("class", "foresight-shadow")
-		    .text(function(d) { return d.name; });
-		
-		text.append("svg:text")
-		    .attr("x", 8)
-		    .attr("y", ".31em")
 		    .text(function(d) { return d.name; })
+		    .attr("class", function(d) { if (d.status == 'Resolved' || d.status == 'Closed') { return "foresight-text-striked" } })
 			.append("svg:title")
 			.text(function(d) { return d.summary; });
 		

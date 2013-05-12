@@ -35,7 +35,7 @@ public class GraphResponseBuilder {
 		for (int i=0;i<nodes.size();i++) {
 
 			nodeIndex.put(nodes.get(i).getId(), Integer.valueOf(i));
-			
+		
 			json.append("{\"key\":")
 				.append(nodes.get(i).getId())
 			    .append(",\"name\":\"")
@@ -47,6 +47,9 @@ public class GraphResponseBuilder {
 				.append("\",")
 				.append("\"type\":\"")
 				.append(nodes.get(i).getType())
+				.append("\",")
+				.append("\"status\":\"")
+				.append(nodes.get(i).getStatus())
 				.append("\"}");
 			
 			if (i != nodes.size() - 1) {
