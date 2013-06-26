@@ -26,15 +26,13 @@
   pointer-events: none;
 }
 
-.foresight-shadow {
-  stroke: #fff;
-  stroke-width: 3px;
-  stroke-opacity: .8;
-}
-
 .foresight-form-label {
   width: 200px;
   float: left;
+}
+
+.foresight-text-striked {
+	text-decoration: line-through;
 }
 
 .foresight-input {
