@@ -32,7 +32,7 @@
 }
 
 .foresight-text-striked {
-	text-decoration: line-through;
+	color: #aaaaaa;
 }
 
 .foresight-input {
