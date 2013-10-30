@@ -15,7 +15,7 @@
     </organization>
 
     <name>Foresight</name>
-    <description>Issue dependency visualization plugin for Atlassian JIRA.</description>
+    <description>Issue dependency visualization add-on for Atlassian JIRA.</description>
     <packaging>atlassian-plugin</packaging>
 
     <dependencies>
@@ -45,12 +45,12 @@
             <version>1.1.1</version>
             <scope>provided</scope>
         </dependency>
-		<dependency>
-        	<groupId>javax.servlet</groupId>
-        	<artifactId>servlet-api</artifactId>
-        	<version>2.3</version>
-        	<scope>provided</scope>
-		</dependency>
+                <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.3</version>
+                <scope>provided</scope>
+                </dependency>
     </dependencies>
 
     <build>
