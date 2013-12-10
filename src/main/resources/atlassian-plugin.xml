@@ -16,6 +16,7 @@
 		<resource type="download" name="d3.v3.min.js" location="/js/d3.v3.min.js" />
 		<resource type="download" name="foresight.js" location="/js/foresight.js" />
 		<resource type="download" name="images/" location="/images" />
+		<context>atl.general</context>
 	</web-resource>
 
 	<servlet name="Foresight Dependency Graph Servlet" 
@@ -30,7 +31,7 @@
 		<url-pattern>/foresight-settings</url-pattern>
 	</servlet>
 
-	<issue-tabpanel name="Foresight Issue Dependency Viewer Tab"
+	<issue-tabpanel name="Foresight Dependency Viewer Tab"
 		key="foresight-dependency-graph-issue-panel"
 		class="ca.appbox.jira.plugins.issuedependencyviewer.issuetabpanels.IssueDependencyTabPanel">
 		<label key="ca.appbox.jira.plugins.issuedependencyviewer.issue_tab_title" />
