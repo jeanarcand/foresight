@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ca.appbox.jira</groupId>
     <artifactId>foresight</artifactId>
-    <version>0.8.1-jira5</version>
+    <version>0.8.1-jira6</version>
 
     <organization>
         <name>Solutions Appbox inc.</name>
@@ -18,8 +18,8 @@
     <description>Issue dependency visualization plugin for Atlassian JIRA.</description>
     <packaging>atlassian-plugin</packaging>
 
-    <dependencies>
-      <dependency>
+     <dependencies>
+        <dependency>
             <groupId>com.atlassian.jira</groupId>
             <artifactId>jira-api</artifactId>
             <version>${jira.version}</version>
@@ -45,9 +45,14 @@
             <version>1.1.1</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.2-atlassian-1</version>
+        </dependency>
     </dependencies>
 
-    <build>
+ 	<build>
         <plugins>
             <plugin>
                 <groupId>com.atlassian.maven.plugins</groupId>
@@ -56,7 +61,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <productVersion>${jira.version}</productVersion>
-                    <productDataVersion>${jira.data.version}</productDataVersion>
+                    <productDataVersion>${jira.version}</productDataVersion>
                 </configuration>
             </plugin>
             <plugin>
@@ -70,8 +75,9 @@
     </build>
 
     <properties>
-        <jira.version>5.1.8</jira.version>
-        <amps.version>4.1.6</amps.version>
-        <plugin.testrunner.version>1.1.1</plugin.testrunner.version>
+        <jira.version>6.1.5</jira.version>
+        <amps.version>4.2.10</amps.version>
+        <plugin.testrunner.version>1.1.2</plugin.testrunner.version>
+		<testkit.version>5.2.26</testkit.version>
     </properties>
 </project>
