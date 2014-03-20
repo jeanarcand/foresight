@@ -161,6 +161,21 @@ function show_graph() {
 			.append("svg:title")
 			.text(function(d) { return d.summary; });
 		
+		text.append("svg:line")
+		    .attr("x1", 5)
+		    .attr("y1", 0)
+		    .attr("x2", function() {return this.parentNode.firstChild.getComputedTextLength()+5;})
+		    .attr("y2", 0)
+		    .attr("style", function(d) {
+		    	//var associatedLabel = this.parentNode.firstChild
+		    	if (d.status == 'Resolved' || d.status == 'Closed') {
+		    		return "stroke:rgb(0,0,0);stroke-width:1"
+		    	} else {
+		    		return "display:none"
+		    	}
+		    });
+
+		
 		update_description_types();
 		
 		// curve the arcs between the nodes to correctly show cycles.
