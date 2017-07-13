@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ca.appbox.jira</groupId>
     <artifactId>foresight</artifactId>
-    <version>0.8.1-jira6</version>
+    <version>0.8.1-jira7</version>
 
     <organization>
         <name>Solutions Appbox inc.</name>
@@ -62,6 +62,10 @@
                 <configuration>
                     <productVersion>${jira.version}</productVersion>
                     <productDataVersion>${jira.version}</productDataVersion>
+                    
+                    <enableQuickReload>true</enableQuickReload>
+                    <enableFastdev>false</enableFastdev>
+                    
                 </configuration>
             </plugin>
             <plugin>
@@ -75,9 +79,9 @@
     </build>
 
     <properties>
-        <jira.version>6.1.5</jira.version>
-        <amps.version>4.2.10</amps.version>
-        <plugin.testrunner.version>1.1.2</plugin.testrunner.version>
-		<testkit.version>5.2.26</testkit.version>
+        <jira.version>7.2.2</jira.version>
+        <amps.version>6.2.11</amps.version>
+        <plugin.testrunner.version>1.2.3</plugin.testrunner.version>
+		<testkit.version>6.3.11</testkit.version>
     </properties>
 </project>

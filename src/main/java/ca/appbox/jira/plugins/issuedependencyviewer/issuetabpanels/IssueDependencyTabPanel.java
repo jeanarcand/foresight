@@ -1,5 +1,6 @@
 package ca.appbox.jira.plugins.issuedependencyviewer.issuetabpanels;
 
+import com.atlassian.jira.user.ApplicationUser;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,21 +27,25 @@ public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
 	}
 
 	@Override
-	public List<IssueAction> getActions(Issue currentIssue, User currentUser) {
-		
+	public void init(IssueTabPanelModuleDescriptor issueTabPanelModuleDescriptor) {
+		this.issueTabPanelModuleDescriptor = issueTabPanelModuleDescriptor;
+	}
+
+	@Override
+	public List<IssueAction> getActions(Issue issue, ApplicationUser applicationUser) {
 		final List<IssueAction> actions = new ArrayList<IssueAction>();
 		actions.add(new IssueAction() {
-			
+
 			@Override
 			public boolean isDisplayActionAllTab() {
 				return false;
 			}
-			
+
 			@Override
 			public Date getTimePerformed() {
 				return new Date();
 			}
-			
+
 			@Override
 			public String getHtml() {
 				return issueTabPanelModuleDescriptor.getHtml(ISSUE_TAB_PANEL_VELOCITY_TEMPLATE);
@@ -50,12 +55,8 @@ public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
 	}
 
 	@Override
-	public void init(IssueTabPanelModuleDescriptor issueTabPanelModuleDescriptor) {
-		this.issueTabPanelModuleDescriptor = issueTabPanelModuleDescriptor;
-	}
-
-	@Override
-	public boolean showPanel(Issue currentIssue, User currentUser) {
+	public boolean showPanel(Issue issue, ApplicationUser applicationUser) {
 		return true;
 	}
+
 }
